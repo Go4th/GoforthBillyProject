@@ -23,43 +23,46 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Use Firebase library to configure APIs
-        FirebaseApp.configure()
-        var ref: DatabaseReference!
-
-        ref = Database.database().reference()
-
-        let db = Database.database().reference().child("jokes").queryOrdered(byChild: "PostUser")
-        db.observe(.value, with:{ (snapshot: DataSnapshot) in
-            for snap in snapshot.children {
-//                print((snap as! DataSnapshot).key)
-//                var name = snap.value("PostUser")
-
-            }
-        })
-        ref.child("jokes").observeSingleEvent(of: .value , with: {(snapshot) in
-                let value = snapshot.value as? NSDictionary
-            print(value)
-            let joke1 = value?[0]
-            print(joke1)
-//            print(user)
-        })
-        
-            ref.observe(.value, with: { (snapshot) in
-                for child in snapshot.children { //even though there is only 1 child
-                    let snap = child as! DataSnapshot
-                    let dict = snap.value as? NSDictionary
-                    for (joke, item) in dict ?? [:] {
-                        print(joke)
-                        print(item)
-                        
-                       
-                      
-                    }
-//                    let name = dict?["PostUser"] as? String ?? ""
-//                    let setup = dict?["Setup"] as? String ?? ""
-//                    print(name, setup)
-                }
-            })
+//        FirebaseApp.configure()
+//        var ref: DatabaseReference!
+//
+//        ref = Database.database().reference()
+//
+//        let db = Database.database().reference().child("jokes").queryOrdered(byChild: "PostUser")
+//        db.observe(.value, with:{ (snapshot: DataSnapshot) in
+//            for snap in snapshot.children {
+//                print((snap as! DataSnapshot).value)
+////                var name = snap.value("PostUser")
+//                
+//
+//            }
+//        })
+//        ref.child("jokes").observeSingleEvent(of: .value , with: {(snapshot) in
+//                let value = snapshot.value as? NSDictionary
+//            print(value)
+//            let joke1 = value?[0]
+//            print(joke1)
+////            print(user)
+//        })
+//        
+//            ref.observe(.value, with: { (snapshot) in
+//                for child in snapshot.children { //even though there is only 1 child
+//                    let snap = child as! DataSnapshot
+//                    let dict = snap.value as? NSDictionary
+//                    for (joke, item) in dict ?? [:] {
+////                        let userName = joke["PostUser"] as? String
+//                        print(joke)
+//                        print(item)
+//                        
+//                        
+//                       
+//                      
+//                    }
+////                    let name = dict?["PostUser"] as? String ?? ""
+////                    let setup = dict?["Setup"] as? String ?? ""
+////                    print(name, setup)
+//                }
+//            })
         // Override point for customization after application launch.
 //        let authUI = FUIAuth.defaultAuthUI()
 //        // You need to adopt a FUIAuthDelegate protocol to receive callback
