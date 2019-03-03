@@ -27,13 +27,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
         jokes = []
         var ref = Database.database().reference()
+
                 ref.observe(.value, with: { (snapshot) in
                     for child in snapshot.children { //even though there is only 1 child
+                        print(child)
                         let snap = child as! DataSnapshot
+                        print(snap)
                         //                let dict = snap.value as? NSDictionary
                         self.dict = snap.value as! [String: AnyObject]
+                        print(self.dict
+                        )
                         for (joke, item) in self.dict ?? [:] {
-                            let myJokeCollection = Jokes(fromDict: item as? [String : AnyObject] ?? self.placeholderDict);
+                            let myJokeCollection = Jokes(fromDict: item as? [String : AnyObject] ?? self.placeholderDict, jokeId: joke);
                             self.jokes.append(myJokeCollection)
                             print(myJokeCollection)
                             print(myJokeCollection.postUser)
@@ -45,7 +50,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         //Below is intial example
         
         let barHeight: CGFloat = UIApplication.shared.statusBarFrame.size.height
-        let displayWidth: CGFloat = 400
+        let displayWidth: CGFloat = 365
 //        let displayHeight: CGFloat = self.view.frame.height
         let displayHeight: CGFloat = 200
         
@@ -90,54 +95,55 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         myTableView.reloadData()
     }
     
-    @IBAction func BackHome(_ sender: Any) {
-        self.performSegue(withIdentifier: "BackHome", sender: sender)
-    }
-    func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //         Get the new view controller using segue.destination.
+        //         Pass the selected object to the new view controller.
         if (segue.identifier == "ViewJoke") {
-            // pass data to next view
-            if let joke = sender as? Jokes {
-                let controller = segue.destination as! ViewJokeController
-                controller.PostUser = sender.PostUser.text!
-                controller.SetUp = sender.Setup.text!
-                controller.Punchline = sender.Punchline.text!
-            }
+                        // pass data to next view
+                        if let joke = sender as? Jokes {
+                            let controller = segue.destination as! JokeViewController
+                                print(joke)
+                            controller.PostUser = joke.postUser
+                            controller.SetUp = joke.setup
+                            controller.Punchline = joke.punchline
+                            controller.Rating = joke.rating
+                            controller.JokeId = joke.jokeIdItem as! String
+                        }
             
-        } else if (segue.identifier == "BackHome"){
-            print("made it here")
-        }
+                    }
     }
+//    func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
+//        if (segue.identifier == "ViewJoke") {
+//            // pass data to next view
+//            if let joke = sender as? Jokes {
+//                let controller = segue.destination as! JokeViewController
+//
+//                controller.PostUser = sender.PostUser.text!
+//                controller.SetUp = sender.Setup.text!
+//                controller.Punchline = sender.Punchline.text!
+//            }
+//
+//        } else if (segue.identifier == "BackHome"){
+//            print("made it here")
+//        }
+//    }
+    
 }
  class Jokes {
     var postUser: String
     var punchline: String
     var rating: Int
     var setup: String
+    var jokeIdItem: Any
     
-    init(fromDict dict:[String: AnyObject]) {
+    init(fromDict dict:[String: AnyObject], jokeId item:Any) {
         self.postUser = dict["PostUser"] as? String ?? ""
         self.punchline = dict["Punchline"] as? String ?? ""
         self.rating = dict["Rating"] as? Int ?? 0
         self.setup = dict["Setup"] as? String ?? ""
-        
+        self.jokeIdItem = item
     }
 }
 
-class ViewJokeController {
-    
-    
-    var PostUser: String
-    var SetUp: String
-    var Punchline: String
-    var Rating: Int
-    
-    init(){
 
-        self.PostUser = ""
-        self.SetUp = ""
-        self.Punchline = ""
-        self.Rating = 0
-    }
-    
-    
-}

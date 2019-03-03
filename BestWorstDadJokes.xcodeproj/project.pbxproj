@@ -14,6 +14,7 @@
 		3F3DF7D7220A0B9B00BDDD5B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F3DF7D5220A0B9B00BDDD5B /* LaunchScreen.storyboard */; };
 		3F3DF7E2220A0B9B00BDDD5B /* BestWorstDadJokesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3DF7E1220A0B9B00BDDD5B /* BestWorstDadJokesTests.swift */; };
 		3F3DF7ED220A0B9B00BDDD5B /* BestWorstDadJokesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3DF7EC220A0B9B00BDDD5B /* BestWorstDadJokesUITests.swift */; };
+		3F470C96222B80D4001E4D0E /* JokeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F470C95222B80D4001E4D0E /* JokeViewController.swift */; };
 		3F9076372215F07C004925EC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3F9076362215F07C004925EC /* GoogleService-Info.plist */; };
 		7407FBF2D9DC12D0F439A73E /* Pods_BestWorstDadJokes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E940B41FF682AC4C632D4D /* Pods_BestWorstDadJokes.framework */; };
 		8404994818297493A11C51E2 /* Pods_BestWorstDadJokesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7447E072EF68B78345D16AA /* Pods_BestWorstDadJokesTests.framework */; };
@@ -53,6 +54,7 @@
 		3F3DF7E8220A0B9B00BDDD5B /* BestWorstDadJokesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BestWorstDadJokesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F3DF7EC220A0B9B00BDDD5B /* BestWorstDadJokesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestWorstDadJokesUITests.swift; sourceTree = "<group>"; };
 		3F3DF7EE220A0B9B00BDDD5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3F470C95222B80D4001E4D0E /* JokeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeViewController.swift; sourceTree = "<group>"; };
 		3F9076362215F07C004925EC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4837DFAC1DCB1CCD63E6223E /* Pods-BestWorstDadJokesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BestWorstDadJokesTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BestWorstDadJokesTests/Pods-BestWorstDadJokesTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4D441A38CDF4D9DA46C72679 /* Pods_BestWorstDadJokesUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BestWorstDadJokesUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,6 +125,7 @@
 				3F3DF7D5220A0B9B00BDDD5B /* LaunchScreen.storyboard */,
 				3F9076362215F07C004925EC /* GoogleService-Info.plist */,
 				3F3DF7D8220A0B9B00BDDD5B /* Info.plist */,
+				3F470C95222B80D4001E4D0E /* JokeViewController.swift */,
 			);
 			path = BestWorstDadJokes;
 			sourceTree = "<group>";
@@ -450,6 +453,7 @@
 			files = (
 				3F3DF7CF220A0B9800BDDD5B /* ViewController.swift in Sources */,
 				3F3DF7CD220A0B9800BDDD5B /* AppDelegate.swift in Sources */,
+				3F470C96222B80D4001E4D0E /* JokeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
