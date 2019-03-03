@@ -33,7 +33,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="uv1-zI-wEr" kind="presentation" id="lCg-X7-qJW"/>
+                                            <segue destination="uv1-zI-wEr" kind="show" id="lCg-X7-qJW"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -176,7 +176,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="close"/>
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="presentation" id="4Tm-g6-xQb"/>
+                                    <segue destination="BYZ-38-t0r" kind="popoverPresentation" popoverAnchorView="lv3-GQ-Io7" id="4Tm-g6-xQb">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="passedSetup" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kfg-WP-Fb6">

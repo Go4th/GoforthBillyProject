@@ -50,11 +50,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         //Below is intial example
         
         let barHeight: CGFloat = UIApplication.shared.statusBarFrame.size.height
-        let displayWidth: CGFloat = 365
+        let displayWidth: CGFloat = 355
 //        let displayHeight: CGFloat = self.view.frame.height
         let displayHeight: CGFloat = 200
         
-        myTableView = UITableView(frame: CGRect(x: 0, y: 220, width: displayWidth, height: displayHeight - barHeight))
+        myTableView = UITableView(frame: CGRect(x: 10, y: 220, width: displayWidth, height: displayHeight - barHeight))
         myTableView.register(UITableViewCell.self, forCellReuseIdentifier: "JokeCell")
         myTableView.dataSource = self
         myTableView.delegate = self
@@ -76,6 +76,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "JokeCell", for: indexPath as IndexPath)
         cell.textLabel!.text = "\(jokes[indexPath.item].setup)"
+        cell.backgroundColor = indexPath.row % 2 == 0 ? UIColor.black.withAlphaComponent(0.05) : .white
         return cell
     }
   
