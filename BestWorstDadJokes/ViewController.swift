@@ -20,25 +20,25 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var dict : [String: AnyObject] = [:]
     var jokes = [Jokes]()
     var placeholderDict : [String: AnyObject] = [:]
-    private let myArray: NSArray = ["First","Second","Third"]
     private var myTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Initialize jokes array on load
         jokes = []
         var ref = Database.database().reference()
-
                 ref.observe(.value, with: { (snapshot) in
-                    for child in snapshot.children { //even though there is only 1 child
+                    for child in snapshot.children {
                         print(child)
                         let snap = child as! DataSnapshot
                         print(snap)
-                        //                let dict = snap.value as? NSDictionary
+                        // Set dict as snapshot from Firebase Dictionary
                         self.dict = snap.value as! [String: AnyObject]
                         print(self.dict
                         )
                         for (joke, item) in self.dict ?? [:] {
                             let myJokeCollection = Jokes(fromDict: item as? [String : AnyObject] ?? self.placeholderDict, jokeId: joke);
+                            // Add each joke to jokes array
                             self.jokes.append(myJokeCollection)
                             print(myJokeCollection)
                             print(myJokeCollection.postUser)
@@ -47,11 +47,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     }
                 })
         
-        //Below is intial example
-        
+        //Configure Table View Display In UI
         let barHeight: CGFloat = UIApplication.shared.statusBarFrame.size.height
         let displayWidth: CGFloat = 355
-//        let displayHeight: CGFloat = self.view.frame.height
         let displayHeight: CGFloat = 200
         
         myTableView = UITableView(frame: CGRect(x: 10, y: 220, width: displayWidth, height: displayHeight - barHeight))
@@ -61,18 +59,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.view.addSubview(myTableView)
     }
     
-    
+    // Send This indexPath.row to the JokeViewController
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Num: \(indexPath.row)")
-//        print("Value: \(myArray[indexPath.row])")
         print("Value: \(jokes[indexPath.row].setup)")
         self.performSegue(withIdentifier: "ViewJoke", sender: jokes[indexPath.row])
     }
     
+    // Configure tableview count agains jokes array
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return jokes.count
     }
     
+    // Assign jokes setup and color to designated cellRow
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "JokeCell", for: indexPath as IndexPath)
         cell.textLabel!.text = "\(jokes[indexPath.item].setup)"
@@ -80,6 +79,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return cell
     }
   
+    // Submit joke to Firebase database.
     @IBOutlet weak var Setup: UITextField!
     @IBOutlet weak var Punchline: UITextField!
     @IBOutlet weak var PostUser: UITextField!
@@ -96,7 +96,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         myTableView.reloadData()
     }
     
-    
+    // Prepare to pass selected jokes to JokeViewController by initializing object reference in that controller
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //         Get the new view controller using segue.destination.
         //         Pass the selected object to the new view controller.
@@ -114,23 +114,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
                     }
     }
-//    func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
-//        if (segue.identifier == "ViewJoke") {
-//            // pass data to next view
-//            if let joke = sender as? Jokes {
-//                let controller = segue.destination as! JokeViewController
-//
-//                controller.PostUser = sender.PostUser.text!
-//                controller.SetUp = sender.Setup.text!
-//                controller.Punchline = sender.Punchline.text!
-//            }
-//
-//        } else if (segue.identifier == "BackHome"){
-//            print("made it here")
-//        }
-//    }
     
 }
+//Jokes Class
  class Jokes {
     var postUser: String
     var punchline: String
